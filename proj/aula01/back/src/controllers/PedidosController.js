@@ -31,6 +31,26 @@ const toReadAll = (req, res) => {
     })
 }
 
+const toReadEx = (req, res) => {
+    con.query(Pedidos.toReadEx(), (err, result) => {
+        if (err == null) {
+            res.status(200).json(result).end()
+        } else {
+            res.status(500).json(err).end()
+        }
+    })
+}
+
+const toReadEnt = (req, res) => {
+    con.query(Pedidos.toReadEnt(req.params), (err, result) => {
+        if (err == null) {
+            res.status(200).json(result).end()
+        } else {
+            res.status(500).json(err).end()
+        }
+    })
+}
+
 const toUpdate = (req, res) => {
     con.query(Pedidos.toUpdate(req.body), (err, result) => {
         if (err == null) {
@@ -55,6 +75,8 @@ module.exports = {
     toCreate,
     toRead,
     toReadAll,
+    toReadEx,
+    toReadEnt,
     toUpdate,
     toDelete
 }

@@ -3,25 +3,35 @@ const toCreate = (model) => {
 }
 
 const toRead = (model) => {
-    return `SELECT * FROM pedidos WHERE id_pedido = ${model.id}`
+    return `SELECT * FROM vw_pedidos WHERE id_pedido = ${model.id}`
 }
 
 const toReadAll = () => {
-    return `SELECT * FROM pedidos`
+    return `SELECT * FROM vw_pedidos`
+}
+
+const toReadEx = () => {
+    return `SELECT * FROM vw_pedidos_ex`
+}
+
+const toReadEnt = (model) => {
+    return `SELECT * FROM vw_pedidos_ent WHERE id_entregador = ${model.id}`
 }
 
 const toUpdate = (model) => {
-    return `UPDATE pedidos SET hora_entrega = '${model.horaEnt}', hora_fim = '${model.horaFim}' WHERE id_pedido = ${model.id}`
+    return `UPDATE pedidos SET hora_entrega = '${model.hora_entrega}', hora_fim = '${model.hora_fim}' WHERE id_pedido = ${model.id_pedido}`
 }
 
 const toDelete = (model) => {
-    return `DELETE FROM pedidos WHERE id_pedido = ${model.id}`
+    return `DELETE FROM pedidos WHERE id_pedido = ${model.id_pedido}`
 }
 
 module.exports = {
     toCreate,
     toRead,
     toReadAll,
+    toReadEx,
+    toReadEnt,
     toUpdate,
     toDelete
 }

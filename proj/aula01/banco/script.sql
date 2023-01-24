@@ -24,7 +24,18 @@ CREATE TABLE pedidos(
 CREATE VIEW vw_pedidos AS
 SELECT p.*, e.nome as nome_ent, e.veiculo FROM pedidos p
 INNER JOIN entregadores e
-ON p.id_entregador = e.id_entregador;
+ON p.id_entregador = e.id_entregador
+ORDER BY p.id_pedido ASC;
+
+CREATE VIEW vw_pedidos_ex AS
+SELECT * FROM vw_pedidos
+WHERE hora_entrega IS NULL OR hora_entrega = '' OR hora_fim = NULL OR hora_fim = ""
+ORDER BY id_pedido ASC;
+
+CREATE VIEW vw_pedidos_ent AS
+SELECT * FROM vw_pedidos
+WHERE hora_fim IS NULL OR hora_fim = ""
+ORDER BY id_pedido ASC;
 
 LOAD DATA INFILE 'C:/Users/des/Documents/3DES/proj/aula01/banco/entregadores.csv'
 INTO TABLE entregadores

@@ -2,7 +2,7 @@ const con = require("../models/dao");
 const Entregadores = require("../models/Entregador")
 
 const toRead = (req, res) => {
-    con.query(Entregadores.toRead(req.body), (err, result) => {
+    con.query(Entregadores.toRead(req.params), (err, result) => {
         if (err == null) {
             res.status(200).json(result).end()
         } else {
@@ -12,11 +12,13 @@ const toRead = (req, res) => {
 }
 
 const toValidate = (req, res) => {
-    con.query(Entregadores.toRead(req.body), (err, result) => {
+    con.query(Entregadores.toReadEmail(req.body), (err, result) => {
         if (err == null) {
             if (result.length > 0) {
-                if (req.body.senha == result.senha) {
-                    res.status(200).json(result).end()
+                if (req.body.senha == result[0].senha) {
+                    res.status(200).json(result[0]).end()
+                } else {
+                    res.status(400).end()
                 }
             } else {
                 res.status(404).json({'msg': 'Entregador não encontrado'}).end()
