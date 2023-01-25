@@ -29,7 +29,7 @@ ORDER BY p.id_pedido ASC;
 
 CREATE VIEW vw_pedidos_ex AS
 SELECT * FROM vw_pedidos
-WHERE hora_entrega IS NULL OR hora_entrega = '' OR hora_fim = NULL OR hora_fim = ""
+WHERE hora_entrega IS NULL OR hora_entrega = '' OR hora_fim IS NULL OR hora_fim = ""
 ORDER BY id_pedido ASC;
 
 CREATE VIEW vw_pedidos_ent AS

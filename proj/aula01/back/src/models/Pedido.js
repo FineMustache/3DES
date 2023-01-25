@@ -19,7 +19,11 @@ const toReadEnt = (model) => {
 }
 
 const toUpdate = (model) => {
-    return `UPDATE pedidos SET hora_entrega = '${model.hora_entrega}', hora_fim = '${model.hora_fim}' WHERE id_pedido = ${model.id_pedido}`
+    return `UPDATE pedidos SET hora_entrega = '${model.hora_entrega}' WHERE id_pedido = ${model.id_pedido}`
+}
+
+const toEnd = (model) => {
+    return `UPDATE pedidos SET hora_fim = '${model.hora_fim}' WHERE id_pedido = ${model.id_pedido}`
 }
 
 const toDelete = (model) => {
@@ -33,5 +37,6 @@ module.exports = {
     toReadEx,
     toReadEnt,
     toUpdate,
+    toEnd,
     toDelete
 }

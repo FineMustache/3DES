@@ -33,63 +33,35 @@
 
                 </select>
             </div>
-            <button>Gerar</button>
+            <button onclick="generate()">Gerar</button>
         </div>
         <div class="control">
             <div class="left">
                 <span>Em Execução</span>
-                <div class="card">
+                <div id="modeloL" class="card modelo">
                     <div class="card-info">
                         <span>Id: <span id="id">1</span></span>
                         <span>Cliente: <span id="cli">Mauro Moura Silva</span></span>
+                        <span>Produto: <span id="prod">Latão de Coca-Cola</span></span>
                         <span>Endereço: <span id="end">Rua Arroz e Feijão, Macarrão, Salada OK</span></span>
                         <span>Data: <span id="data">24/01/2023</span></span>
                         <span>Horário: <span id="horario">09:50</span></span>
                     </div>
-                    <button><img src="../assets/delivery.png" alt=""> <span>Enviar Entrega</span></button>
-                </div>
-                <div class="card">
-                    <div class="card-info">
-                        <span>Id: <span id="id">1</span></span>
-                        <span>Cliente: <span id="cli">Mauro Moura Silva</span></span>
-                        <span>Endereço: <span id="end">Rua Arroz e Feijão, Macarrão, Salada OK</span></span>
-                        <span>Data: <span id="data">24/01/2023</span></span>
-                        <span>Horário: <span id="horario">09:50</span></span>
-                    </div>
-                    <button><img src="../assets/delivery.png" alt=""> <span>Enviar Entrega</span></button>
-                </div>
-                <div class="card">
-                    <div class="card-info">
-                        <span>Id: <span id="id">1</span></span>
-                        <span>Cliente: <span id="cli">Mauro Moura Silva</span></span>
-                        <span>Endereço: <span id="end">Rua Arroz e Feijão, Macarrão, Salada OK</span></span>
-                        <span>Data: <span id="data">24/01/2023</span></span>
-                        <span>Horário: <span id="horario">09:50</span></span>
-                    </div>
-                    <button><img src="../assets/delivery.png" alt=""> <span>Enviar Entrega</span></button>
-                </div>
-                <div class="card">
-                    <div class="card-info">
-                        <span>Id: <span id="id">1</span></span>
-                        <span>Cliente: <span id="cli">Mauro Moura Silva</span></span>
-                        <span>Endereço: <span id="end">Rua Arroz e Feijão, Macarrão, Salada OK</span></span>
-                        <span>Data: <span id="data">24/01/2023</span></span>
-                        <span>Horário: <span id="horario">09:50</span></span>
-                    </div>
-                    <button><img src="../assets/delivery.png" alt=""> <span>Enviar Entrega</span></button>
+                    <button onclick="send(this.parentNode)"><img src="../assets/delivery.png" alt=""> <span>Enviar Entrega</span></button>
                 </div>
             </div>
             <div class="right">
                 <span>Em Entrega</span>
-                <div class="card">
+                <div id="modeloR" class="card modelo">
                     <div class="card-info">
                         <span>Id: <span id="id">1</span></span>
                         <span>Cliente: <span id="cli">Mauro Moura Silva</span></span>
+                        <span>Produto: <span id="prod">Latão de Coca-Cola</span></span>
                         <span>Endereço: <span id="end">Rua Arroz e Feijão, Macarrão, Salada OK</span></span>
                         <span>Data: <span id="data">24/01/2023</span></span>
                         <span>Horário: <span id="horario">09:50</span></span>
                     </div>
-                    <button><img src="../assets/confirm.png" alt=""> <span>Finalizar Entrega</span></button>
+                    <button onclick="end(this.parentNode)"><img src="../assets/confirm.png" alt=""> <span>Finalizar Entrega</span></button>
                 </div>
             </div>
         </div>

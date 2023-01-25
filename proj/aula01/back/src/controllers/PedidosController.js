@@ -52,13 +52,25 @@ const toReadEnt = (req, res) => {
 }
 
 const toUpdate = (req, res) => {
-    con.query(Pedidos.toUpdate(req.body), (err, result) => {
-        if (err == null) {
-            res.status(200).json(result).end()
-        } else {
-            res.status(500).json(err).end()
-        }
-    })
+    console.log(req.body);
+    if (req.body.hora_fim == null) {
+        con.query(Pedidos.toUpdate(req.body), (err, result) => {
+            if (err == null) {
+                res.status(200).json(result).end()
+            } else {
+                res.status(500).json(err).end()
+            }
+        })
+    } else {
+        con.query(Pedidos.toEnd(req.body), (err, result) => {
+            if (err == null) {
+                res.status(200).json(result).end()
+            } else {
+                res.status(500).json(err).end()
+            }
+        })
+    }
+    
 }
 
 const toDelete = (req, res) => {
