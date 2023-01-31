@@ -62,6 +62,14 @@ export default function LoginScreen({navigation}) {
         }
         
     }
+
+    React.useEffect(() => {
+      getData().then((val) => {
+        if (val != null) {
+          navigation.navigate('Home')
+        }
+      })
+    }, [])
     
     return (
       <View style={styles.container}>

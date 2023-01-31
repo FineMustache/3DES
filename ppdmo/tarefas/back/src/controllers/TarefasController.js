@@ -1,44 +1,47 @@
-const con = require('../models/DAO')
-const Tarefa = require('../models/Tarefa')
+const { PrismaClient } = require('@prisma/client')
 
-const toCreate = (req, res) => {
-    con.query(Tarefa.criarTarefa(req.body), (err, result) => {
-        if (err == null) {
-            res.status(201).json(result).end()
-        } else {
-            res.status(500).json(err).end()
-        }
+const prisma = new PrismaClient()
+
+const toCreate = async (req, res) => {
+    var info = req.body
+    info.status = 1
+    const tarefa = await prisma.tarefas.create({
+        data: info
     })
+    res.status(201).json(tarefa).end()
 }
 
-const toConclude = (req, res) => {
-    con.query(Tarefa.concluirTarefa(req.body), (err, result) => {
-        if (err == null) {
-            res.status(200).json(result).end()
-        } else {
-            res.status(500).json(err).end()
-        }
+const toConclude = async (req, res) => {
+    var info = {
+        "hora_enc": req.body.horario_enc,
+        "status": 2
+    }
+    const tarefa = await prisma.tarefas.update({
+        where: {
+            id: Number(req.body.id)
+        },
+        data: info
     })
+    res.status(201).json(tarefa).end()
 }
 
-const toCancel = (req, res) => {
-    con.query(Tarefa.cancelarTarefa(req.body), (err, result) => {
-        if (err == null) {
-            res.status(200).json(result).end()
-        } else {
-            res.status(500).json(err).end()
-        }
+const toCancel = async (req, res) => {
+    const tarefa = await prisma.tarefas.update({
+        where: {
+            id: Number(req.body.id)
+        },
+        data: {"status": 3}
     })
+    res.status(201).json(tarefa).end()
 }
 
-const toRead = (req, res) => {
-    con.query(Tarefa.listarTarefas(req.params), (err, result) => {
-        if (err == null) {
-            res.status(201).json(result).end()
-        } else {
-            res.status(500).json(err).end()
+const toRead = async (req, res) => {
+    const tarefas = await prisma.tarefas.findMany({
+        where: {
+            "status": Number(req.params.status)
         }
     })
+    res.status(201).json(tarefas).end()
 }
 
 module.exports = {

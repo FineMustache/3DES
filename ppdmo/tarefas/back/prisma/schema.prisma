@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tarefas {
+  id          Int     @id @default(autoincrement())
+  descricao   String  @db.VarChar(300)
+  hora_tarefa String  @db.VarChar(8)
+  hora_enc    String? @db.VarChar(8)
+  status      Int
+}

@@ -15,7 +15,7 @@ export default function Pedido(props) {
             <Text style={{color: 'rgb(202, 98, 0)', fontSize: 17, marginBottom: 5}}>Horário: <Text style={{color: '#000'}}>{model.hora_pedido}</Text></Text>
           </View>
           <TouchableOpacity onPress={() => onPress()} style={{padding: 10, display: 'flex', backgroundColor: 'rgb(202, 98, 0)', alignItems: 'center'}}>
-            <Text style={{color: '#fff', fontSize: 20}}>Enviar para Entrega</Text>
+            <Text style={{color: '#fff', fontSize: 20}}>Finalizar Entrega</Text>
           </TouchableOpacity>
         </View>
         </View>
