@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+    height: 100vh;
+}
+
+body{
+    background-color: #ddd;
+    padding-top: 10vh;
+}
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+}
+
+nav > p {
+    font-size: 18pt;
+    padding: 5px 25px;
+}
+
+ul{
+    display: flex;
+    list-style: none;
+}
+
+li{
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 15pt;
+}
+
+main{
+    padding: 100px;
+}
+
+.card-setor{
+    background-color: #fff;
+}
