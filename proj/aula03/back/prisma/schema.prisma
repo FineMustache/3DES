@@ -23,6 +23,7 @@ model Produto {
   nome     String
   valor    Float
   id_setor Int
+  imagem   String @default("default.png")
   setor    Setor @relation(fields: [id_setor], references: [id])
   detalhe Detalhe[]
 }
