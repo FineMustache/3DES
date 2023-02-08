@@ -16,17 +16,31 @@
                 <li><a href="#">Funcionários</a></li>
                 <li><a href="#">Produtos</a></li>
                 <li><div class="cart">
-                    <span class="cartNum escondido" id="cartNum">1</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <div class="cartList">
-                        <div class="cartItem">
+                    <div class="cart-btn" onclick="toggleCart()">
+                        <span class="cartNum escondido" id="cartNum">1</span>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="cartList escondido">
+                        <div class="cartItem escondido">
                             <img src="../assets/default.png" alt="">
-                            <span id="nome">AAAAAAAAAA</span>
+                            <div class="itemInfo">
+                                <span id="nome">Kit Cozinha Completa - Armário/Balcão</span>
+                                <span id="valor">R$ 50,00</span>
+                            </div>
                             <div class="form-control">
                                 <label for="qtde">Qtde.</label>
                                 <input type="number" min="1" max="999" value="1" class="inpQtde">
                             </div>
-                            <span><i class="fa-solid fa-xmark"></i></span>
+                            <div class="removeItem">
+                                <span><i class="fa-solid fa-xmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="cartTotal">
+                            <span>Total:</span>
+                            <span id="valorTotal">R$ 50,00</span>
+                        </div>
+                        <div class="cartConfirm">
+                            <button>Confirmar <i class="fa-solid fa-check"></i></button>
                         </div>
                     </div>
                 </div></li>

@@ -10,10 +10,46 @@ function atualizarCart() {
     let aux = window.localStorage.getItem('@cart')
     cart = aux !== null ? JSON.parse(aux) : []
     document.querySelector('#cartNum').innerHTML = cart.length
+    let modelo = document.querySelector('.cartItem').cloneNode(true)
+    let tot = document.querySelector('.cartTotal').cloneNode(true)
+    let conf = document.querySelector('.cartConfirm').cloneNode(true)
+    document.querySelector('.cartList').innerHTML = ""
+    document.querySelector('.cartList').appendChild(modelo)
+    document.querySelector('.cartList').appendChild(tot)
+    document.querySelector('.cartList').appendChild(conf)
     if (cart.length > 0) {
+        let soma = 0
         document.querySelector('#cartNum').classList.remove('escondido')
+        cart.forEach(i => {
+            soma += i.valor * i.qtde
+            let model = document.querySelector('.cartItem').cloneNode(true)
+            model.querySelector('#nome').innerHTML = i.nome
+            model.querySelector('#valor').innerHTML = "R$ " + (parseFloat(i.valor).toFixed(2).toString().replace('.', ','))
+            model.querySelector('.inpQtde').value = i.qtde
+            model.id = "c" + i.id
+            model.classList.remove('escondido')
+            model.querySelector('img').src = '../assets/' + i.imagem
+
+            model.querySelector('.inpQtde').addEventListener('change', (ev) => {
+                i.qtde = ev.target.value
+                window.localStorage.setItem('@cart', JSON.stringify(cart))
+                atualizarCart()
+            })
+
+            model.querySelector('.fa-solid').addEventListener('click', (ev) => {
+                const index = cart.findIndex(r => r.id === i.id)
+                let cartClone = cart
+                let a = cartClone.splice(index, 1)
+                window.localStorage.setItem('@cart', JSON.stringify(cartClone))
+                atualizarCart()
+            })
+
+            document.querySelector('.cartList').insertBefore(model, document.querySelector('.cartTotal'))
+        })
+        document.querySelector('#valorTotal').innerHTML = "R$ " + (parseFloat(soma).toFixed(2).toString().replace('.', ','))
     }
 
+    
     
 }
 
@@ -64,7 +100,13 @@ function carregarProdutos() {
             modelo.querySelector('#prodImg').src = "../assets/" + r.imagem
             modelo.classList.remove('modelo')
             modelo.querySelector('button').addEventListener('click', () => {
-                cart.push(r)
+                const i = cart.findIndex(e => e.id === r.id);
+                if (i > -1) {
+                    cart[i].qtde ++
+                } else {
+                    r.qtde = 1
+                    cart.push(r)
+                }
                 console.log(cart)
                 window.localStorage.setItem("@cart", JSON.stringify(cart))
                 atualizarCart()
@@ -94,7 +136,13 @@ function carregarProdutosSetor(id) {
             modelo.querySelector('#prodImg').src = "../assets/" + r.imagem
             modelo.classList.remove('modelo')
             modelo.querySelector('button').addEventListener('click', () => {
-                cart.push(r)
+                const i = cart.findIndex(e => e.id === r.id);
+                if (i > -1) {
+                    cart[i].qtde ++
+                } else {
+                    r.qtde = 1
+                    cart.push(r)
+                }
                 console.log(cart)
                 window.localStorage.setItem("@cart", JSON.stringify(cart))
                 atualizarCart()
@@ -104,4 +152,8 @@ function carregarProdutosSetor(id) {
         })
     })
     .catch(err => console.error(err));
+}
+
+function toggleCart() {
+    document.querySelector('.cartList').classList.toggle('escondido')
 }

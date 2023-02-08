@@ -105,6 +105,10 @@ main{
     font-size: 1.5rem;
 }
 
+#valorTotal{
+    font-size: 1.5rem;
+}
+
 .addCart{
     font-size: 1.5rem;
     background-color: white;
@@ -172,17 +176,21 @@ main{
 }
 
 .escondido{
-    display: none;
+    display: none!important;
 }
 
 .cartList{
     position: absolute;
     right: 0;
     background-color: white;
+    width: 500px;
+    box-shadow: 0 0 5px black;
 }
 
 .cartList img {
     height: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 .cartItem{
@@ -190,17 +198,59 @@ main{
     color: black;
     font-size: 1rem;
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr 1fr;
+    grid-template-columns: 2fr 4fr 3fr 1fr;
+    gap: 5px;
+}
+
+.cartItem #nome{
+    text-transform: uppercase;
 }
 
 .form-control{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .inpQtde{
-    width: 4ch;
+    width: 6ch;
     color: black;
     border: 1px solid rgb(206, 206, 206);
+    text-align: center;
+}
+
+.removeItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cartTotal{
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid rgb(206, 206, 206);
+}
+
+.cartConfirm{
+    display: flex;
+    padding: 10px;
+    justify-content: end;
+    width: 100%;
+}
+
+.cartConfirm > button{
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
