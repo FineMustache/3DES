@@ -4,6 +4,7 @@ const prisma = new PrismaClient()
 
 const create = async (req, res) => {
     var info = req.body
+    req.body.comissao = Number(req.body.comissao)
     const setor = await prisma.setor.create({
         data: info
     })
@@ -56,7 +57,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
     const setor = await prisma.setor.delete({
         where: {
-            id: Number(req.params.id)
+            id: Number(req.body.id)
         }
     })
     res.status(200).json(setor).end()

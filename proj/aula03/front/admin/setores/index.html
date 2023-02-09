@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Vendas</title>
+</head>
+<body onload="carregar()">
+    <header>
+        <nav>
+            <p>Loja</p>
+            <ul>
+                <li class="active"><a href="#">Setores</a></li>
+                <li><a href="../funcionarios/index.html">Funcionários</a></li>
+                <li><a href="../produtos/index.html">Produtos</a></li>
+                <li><a href="#">Vendas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="upon-table">
+            <button onclick="toggleModal()">Cadastrar Setor</button>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <th>Nome</th>
+                    <th>Comissão</th>
+                    <th>Qtde. Funcionários</th>
+                    <th>Qtde. Produtos</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <div class='modal escondido'>
+        <div class='modal-container'>
+            <span class='close' onclick='toggleModal()'><i class="fa-solid fa-xmark"></i></span>
+            <div class="modal-form">
+                <div class="form-control">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="inpNome" name="nome">
+                </div>
+                <div class="form-control">
+                    <label for="comissao">Comissão (%)</label>
+                    <input type="number" min="0" max="100" id="inpComi" name="comissao">
+                </div>
+                <div class="modal-btn">
+                    <button onclick="create()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
+</body>
+</html>

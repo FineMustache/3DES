@@ -20,6 +20,7 @@ function atualizarCart() {
     if (cart.length > 0) {
         let soma = 0
         document.querySelector('#cartNum').classList.remove('escondido')
+        document.querySelector('.cartTotal').classList.remove('escondido')
         cart.forEach(i => {
             soma += i.valor * i.qtde
             let model = document.querySelector('.cartItem').cloneNode(true)
@@ -47,6 +48,9 @@ function atualizarCart() {
             document.querySelector('.cartList').insertBefore(model, document.querySelector('.cartTotal'))
         })
         document.querySelector('#valorTotal').innerHTML = "R$ " + (parseFloat(soma).toFixed(2).toString().replace('.', ','))
+    } else {
+        document.querySelector('.cartTotal').classList.add('escondido')
+        // document.querySelector('.cartConfirm').classList.add('escondido')
     }
 
     
