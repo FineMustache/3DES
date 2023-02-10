@@ -172,15 +172,6 @@ button{
     gap: 10px;
 }
 
-.form-control:nth-child(2) > input{
-    width: 10ch;
-    text-align: center;
-}
-
-.form-control:nth-child(3){
-    padding-bottom: 10px;
-}
-
 .modal-btn{
     padding-top: 15px;
     border-top: 1px solid #ccc;

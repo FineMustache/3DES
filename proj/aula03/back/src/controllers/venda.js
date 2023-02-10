@@ -4,17 +4,19 @@ const prisma = new PrismaClient()
 
 const create = async (req, res) => {
     var info = req.body
-    var venda
-    if (Array.isArray(info)) {
-        venda = await prisma.vendas.createMany({
-            data: info,
-            skipDuplicates: true
-        })
-    }else{
-        venda = await prisma.vendas.create({
-            data: info
-        })
-    }
+
+    req.body.detalhes.forEach(d => {
+        d.quantidade = Number(d.quantidade)
+    })
+
+    const venda = await prisma.vendas.create({
+        data: {
+            id_funcionario: Number(req.body.id_funcionario),
+            detalhe: {
+                create: req.body.detalhes
+            }
+        }
+    })
     
 
     res.status(200).json(venda).end()
@@ -26,7 +28,8 @@ const read = async (req, res) => {
             funcionario: true,
             detalhe: {
                 select: {
-                    produto: true
+                    produto: true,
+                    quantidade: true
                 }
             }
         }

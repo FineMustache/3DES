@@ -4,6 +4,7 @@ function carregar() {
     carregarSetores()
     carregarProdutos()
     atualizarCart()
+    preencherFunc()
 }
 
 function atualizarCart() {
@@ -29,7 +30,7 @@ function atualizarCart() {
             model.querySelector('.inpQtde').value = i.qtde
             model.id = "c" + i.id
             model.classList.remove('escondido')
-            model.querySelector('img').src = '../assets/' + i.imagem
+            model.querySelector('img').src = '../../assets/' + i.imagem
 
             model.querySelector('.inpQtde').addEventListener('change', (ev) => {
                 i.qtde = ev.target.value
@@ -53,6 +54,13 @@ function atualizarCart() {
         // document.querySelector('.cartConfirm').classList.add('escondido')
     }
 
+
+    document.querySelector('.modal-itens').innerHTML = ""
+    cart.forEach(c => {
+        let span = document.createElement('span')
+        span.innerHTML = `${c.nome} (${c.qtde}x)`
+        document.querySelector('.modal-itens').appendChild(span)
+    })
     
     
 }
@@ -101,7 +109,7 @@ function carregarProdutos() {
             modelo.querySelector('#nome').innerHTML = r.nome
             modelo.id = "p" + r.id
             modelo.querySelector('#valor').innerHTML = "R$ " + (parseFloat(r.valor).toFixed(2).toString().replace('.', ','))
-            modelo.querySelector('#prodImg').src = "../assets/" + r.imagem
+            modelo.querySelector('#prodImg').src = "../../assets/" + r.imagem
             modelo.classList.remove('modelo')
             modelo.querySelector('button').addEventListener('click', () => {
                 const i = cart.findIndex(e => e.id === r.id);
@@ -137,7 +145,7 @@ function carregarProdutosSetor(id) {
             modelo.querySelector('#nome').innerHTML = r.nome
             modelo.id = "p" + r.id
             modelo.querySelector('#valor').innerHTML = "R$ " + (parseFloat(r.valor).toFixed(2).toString().replace('.', ','))
-            modelo.querySelector('#prodImg').src = "../assets/" + r.imagem
+            modelo.querySelector('#prodImg').src = "../../assets/" + r.imagem
             modelo.classList.remove('modelo')
             modelo.querySelector('button').addEventListener('click', () => {
                 const i = cart.findIndex(e => e.id === r.id);
@@ -160,4 +168,57 @@ function carregarProdutosSetor(id) {
 
 function toggleCart() {
     document.querySelector('.cartList').classList.toggle('escondido')
+}
+
+function toggleModal(){
+    document.querySelector('.modal').classList.toggle('escondido')
+    document.body.style.overflow = 'hidden'
+}
+
+function preencherFunc() {
+    const options = {method: 'GET'};
+
+fetch('http://localhost:5000/funcionarios', options)
+  .then(response => response.json())
+  .then(response => {
+    response.forEach(r => {
+        let op = document.createElement('option')
+        op.value = r.id
+        op.innerHTML = r.nome
+        document.querySelector('#inpFunc').appendChild(op)
+    })
+  })
+  .catch(err => console.error(err));
+}
+
+function create() {
+    const info = {
+        id_funcionario: document.querySelector('#inpFunc').value,
+        detalhes: []
+    }
+
+    cart.forEach(c => {
+        info.detalhes.push({
+            id_produto: c.id,
+            quantidade: c.qtde
+        })
+    })
+
+    const options = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(info)
+      };
+      
+      fetch('http://localhost:5000/vendas', options)
+        .then(response => response.json())
+        .then(response => {
+            if (response.id !== null) {
+                window.localStorage.setItem('@cart', JSON.stringify([]))
+                window.location.reload()
+            }else{
+                console.log(response);
+            }
+        })
+        .catch(err => console.error(err));
 }
